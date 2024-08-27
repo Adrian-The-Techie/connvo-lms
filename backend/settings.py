@@ -17,6 +17,7 @@ import cloudinary
 import cloudinary.api
 import cloudinary.uploader
 from decouple import config
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -90,14 +91,20 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config('DB_NAME'),
-        "USERNAME": config('DB_USER'),
-        "PASSWORD": config('DB_PASS'),
+if config('MODE') == 'dev':
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": config('DB_NAME'),
+            "USERNAME": config('DB_USER'),
+            "PASSWORD": config('DB_PASS'),
+        }
     }
-}
+
+else:
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES = {"default": dj_database_url.config(default=config("DATABASE_URL"))}
+    DATABASES["default"].update(db_from_env)
 
 
 # Password validation
