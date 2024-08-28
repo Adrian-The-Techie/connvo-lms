@@ -178,13 +178,15 @@ class LessonView(APIView):
         lesson = Lesson(
             name=request.data["name"],
             description=request.data["description"],
+            thumbnail=request.data['thumbnail'],
+            video=request.data['video'],
             url=uuid.uuid4(),
         )
-        if request.FILES != None and request.FILES["thumbnail"] != None:
-            lesson.thumbnail = request.data["thumbnail"]
+        # if request.FILES != None and request.FILES["thumbnail"] != None:
+        #     lesson.thumbnail = request.data["thumbnail"]
 
-        if request.FILES != None and request.FILES["video"] != None:
-            lesson.video = request.data["video"]
+        # if request.FILES != None and request.FILES["video"] != None:
+        #     lesson.video = request.data["video"]
 
         lesson.save()
 

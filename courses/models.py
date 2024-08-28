@@ -31,8 +31,8 @@ class Chapter(models.Model):
 class Lesson(models.Model):
     # program=models.ForeignKey(Chapter, null= True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=255, null=False)
-    thumbnail = models.ImageField(upload_to="thumbnails/")
-    video = models.FileField(upload_to="lessons/")
+    thumbnail = models.CharField(max_length=255)
+    video = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     date_added = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(null=True,blank=True)
