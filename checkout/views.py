@@ -116,8 +116,9 @@ def q(request):
 
     return JsonResponse(res)
 
+@api_view(['POST'])
 def c(request):
 
-    print({"res":request.data})
+    print(request.data)
 
     return JsonResponse({"res":request.data})
