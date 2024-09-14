@@ -1,4 +1,5 @@
 import uuid
+import requests
 
 from decouple import config
 from django.http import JsonResponse
@@ -14,6 +15,7 @@ from shared import generateRefNo
 
 from .helpers.conversion import conversionToKES
 from .helpers.pesapal import getTransactionStatus, submitOrder
+from .helpers.p import disburse
 
 # Create your views here.
 
@@ -103,3 +105,13 @@ def transactionStatus(request):
             {"status": 0, "error": e},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
+
+
+@api_view(['GET'])
+def q(request):
+
+    disburse()
+
+def c(request):
+
+    print(request.data)
