@@ -22,7 +22,7 @@ def _generateB2CKeys():
 def get_reference_no():
     return uuid.uuid4().hex
         
-def disburse(self, data):
+def disburse():
         url = "https://api.safaricom.co.ke/mpesa/b2c/v3/paymentrequest"
         data = {
                 "InitiatorName": "gongagongaB2C",
