@@ -110,8 +110,12 @@ def transactionStatus(request):
 @api_view(['GET'])
 def q(request):
 
-    disburse()
+    res=disburse()
+
+    return JsonResponse(res)
 
 def c(request):
 
-    print(request.data)
+    print({"res":request.data})
+
+    return JsonResponse({"res":request.data})
