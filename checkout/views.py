@@ -112,6 +112,8 @@ def q(request):
 
     res=disburse()
 
+    print(res)
+
     return JsonResponse(res)
 
 def c(request):

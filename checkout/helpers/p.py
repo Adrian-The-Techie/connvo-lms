@@ -23,7 +23,7 @@ def get_reference_no():
     return uuid.uuid4().hex
         
 def disburse():
-        url = "https://api.safaricom.co.ke/mpesa/b2c/v3/paymentrequest"
+        url = "https://api.safaricom.co.ke/mpesa/b2c/v1/paymentrequest"
         data = {
                 "InitiatorName": "gongagongaB2C",
                 "SecurityCredential": "KGwZrRsEUyPy4voojebL+HET5o8oFxo0bhVhs5ssbDDU3QJCv17gq6E8UNMVv9eUcpEaKKNYk1g8TQXNJCKDmqEQDcXc5HG0Y1LZ3rdu2GrsSM9RfoJZwQ7Vyt0ppTjLlh5GKHtlUjf4biKNEOkmFUTjKQEKZHKful0knCeHwBNGch25YGozNd6QJzUdD89h195DGrZ8CdWA3GAEnAjEFStscu4lDKz0TrdAJnGuSVgetFBukEMWyqvySpHsK7BL6w+hlwXU6kEBxonqlZus1jULxDt3oVz37r3lOp97frCprwR/hxbuQZaqFcZho6wMpLqtyaqg3FpuZtFKO/6A4w==",
