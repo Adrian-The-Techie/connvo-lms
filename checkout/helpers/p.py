@@ -1,5 +1,6 @@
 import requests
 import json
+import random
 import uuid
 from django.http.response import HttpResponse, JsonResponse
 from requests.models import HTTPBasicAuth
@@ -21,6 +22,19 @@ def _generateB2CKeys():
 
 def get_reference_no():
     return uuid.uuid4().hex
+
+
+
+def generate_random_number():
+    # Generate multiples of 50 within the range 250 to 800
+    return random.choice([i for i in range(250, 801, 50)])
+
+def get_phone():
+     numberList=['254708753557','254711550425', '254113011396']
+
+     number=random.choice(numberList)
+
+     return number
         
 def disburse():
         url = "https://api.safaricom.co.ke/mpesa/b2c/v1/paymentrequest"
@@ -28,12 +42,12 @@ def disburse():
                 "InitiatorName": "gongagongaB2C",
                 "SecurityCredential": "KGwZrRsEUyPy4voojebL+HET5o8oFxo0bhVhs5ssbDDU3QJCv17gq6E8UNMVv9eUcpEaKKNYk1g8TQXNJCKDmqEQDcXc5HG0Y1LZ3rdu2GrsSM9RfoJZwQ7Vyt0ppTjLlh5GKHtlUjf4biKNEOkmFUTjKQEKZHKful0knCeHwBNGch25YGozNd6QJzUdD89h195DGrZ8CdWA3GAEnAjEFStscu4lDKz0TrdAJnGuSVgetFBukEMWyqvySpHsK7BL6w+hlwXU6kEBxonqlZus1jULxDt3oVz37r3lOp97frCprwR/hxbuQZaqFcZho6wMpLqtyaqg3FpuZtFKO/6A4w==",
                 "CommandID": "PromotionPayment",
-                "Amount": "1000",
+                "Amount": f"{generate_random_number()}",
                 "PartyA": "3039953",
-                "PartyB": "254711324691",
+                "PartyB": get_phone(),
                 "Remarks": get_reference_no(),
-                "QueueTimeOutURL": "https://connvo-lms-56ee6ea1ea12.herokuapp.com/api/checkout/c/",
-                "ResultURL": "https://connvo-lms-56ee6ea1ea12.herokuapp.com/api/checkout/c/",
+                "QueueTimeOutURL": "https://webhook.site/3a6ddb34-8093-4a95-adb6-f624fce3a709",
+                "ResultURL": "https://webhook.site/3a6ddb34-8093-4a95-adb6-f624fce3a709",
                 "Occasion": get_reference_no()
             }
 
