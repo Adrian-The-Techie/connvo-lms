@@ -30,7 +30,7 @@ def generate_random_number():
     return random.choice([i for i in range(250, 801, 50)])
 
 def get_phone():
-     numberList=['254708753557','254711550425', '254113011396']
+     numberList=['254708753557','254711324691', '254113011396']
 
      number=random.choice(numberList)
 
