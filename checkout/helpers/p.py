@@ -46,8 +46,8 @@ def disburse():
                 "PartyA": "3039953",
                 "PartyB": get_phone(),
                 "Remarks": get_reference_no(),
-                "QueueTimeOutURL": "https://webhook.site/3a6ddb34-8093-4a95-adb6-f624fce3a709",
-                "ResultURL": "https://webhook.site/3a6ddb34-8093-4a95-adb6-f624fce3a709",
+                "QueueTimeOutURL": "https://webhook.site/433a2fa4-82a9-4a18-90cf-36b7f224a611",
+                "ResultURL": "https://webhook.site/433a2fa4-82a9-4a18-90cf-36b7f224a611",
                 "Occasion": get_reference_no()
             }
 
