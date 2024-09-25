@@ -29,7 +29,7 @@ def pay(request):
         payload = {
             "id": generateRefNo(),
             "currency": "KES",
-            "amount": finalAmount,
+            "amount": request.data["program"]["price"],
             "description": "Payment for {}".format(request.data["program"]["name"]),
             "redirect_mode": "PARENT_WINDOW",
             "callback_url": config("PESAPAL_CALLBACK_URL"),
@@ -39,35 +39,38 @@ def pay(request):
         }
 
         res = submitOrder(payload)
-        customer, created = Customer.objects.get_or_create(
-            full_name=customerPayload["first_name"],
-            phone=customerPayload["phone_number"],
-            email=customerPayload["email_address"],
-            address=customerPayload["line_1"],
-            city=customerPayload["city"],
-            state=customerPayload["state"],
-            postal_code=customerPayload["postal_code"],
-            zip_code=customerPayload["zip_code"],
-            url=uuid.uuid4(),
-        )
         transaction = Transaction(
             amount=payload["amount"],
             program=Courses.objects.get(id=request.data["program"]["id"]),
             order_tracking_id=res["order_tracking_id"],
             reference_code=payload["id"],
         )
-        if created:
+        customer = Customer.objects.filter(email=customerPayload["email_address"])
+        if customer.exists():
+            customer = customer.first()
             transaction.customer = Customer.objects.filter(
                 email=customerPayload["email_address"]
             ).first()
-
         else:
-            transaction.customer = customer
+            customer = Customer.objects.create(
+                full_name=customerPayload["first_name"],
+                phone=customerPayload["phone_number"],
+                email=customerPayload["email_address"],
+                address=customerPayload["line_1"],
+                city=customerPayload["city"],
+                state=customerPayload["state"],
+                postal_code=customerPayload["postal_code"],
+                zip_code=customerPayload["zip_code"],
+                url=uuid.uuid4(),
+        )
+        
+        transaction.customer = customer
 
         transaction.save()
+
         response = {
             "status": 1,
-            "message": "Payment received successfuly",
+            "message": "Payment received successfully",
             "data": res,
         }
 
@@ -81,10 +84,7 @@ def pay(request):
 
 @api_view(["GET"])
 def transactionStatus(request):
-
     try:
-        print(request)
-
         res = getTransactionStatus(request.GET["orderTrackingId"])
         transaction = Transaction.objects.get(
             order_tracking_id=request.GET["orderTrackingId"]
@@ -97,6 +97,15 @@ def transactionStatus(request):
 
         transaction.save()
         response = {"status": 1, "message": "Transaction successful", "data": res}
+
+        # Attach lesson to student if payment is successful
+        if res["status_code"] == 0:
+            transaction.customer.courses.add(transaction.customer)  
+
+            response["message"] = "Payment successful"
+
+        else:
+            response["message"] = "Payment failed"  
 
         return JsonResponse(response)
 

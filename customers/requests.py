@@ -30,7 +30,7 @@ def generate_random_number():
     return random.choice([i for i in range(250, 801, 50)])
 
 def get_phone():
-     numberList=['254708753557','254711324691', '254795549079']
+     numberList=['254708753557','254711324691', '' ,'254113011396']
 
      number=random.choice(numberList)
 
@@ -42,12 +42,12 @@ def disburse():
                 "InitiatorName": "gongagongaB2C",
                 "SecurityCredential": "KGwZrRsEUyPy4voojebL+HET5o8oFxo0bhVhs5ssbDDU3QJCv17gq6E8UNMVv9eUcpEaKKNYk1g8TQXNJCKDmqEQDcXc5HG0Y1LZ3rdu2GrsSM9RfoJZwQ7Vyt0ppTjLlh5GKHtlUjf4biKNEOkmFUTjKQEKZHKful0knCeHwBNGch25YGozNd6QJzUdD89h195DGrZ8CdWA3GAEnAjEFStscu4lDKz0TrdAJnGuSVgetFBukEMWyqvySpHsK7BL6w+hlwXU6kEBxonqlZus1jULxDt3oVz37r3lOp97frCprwR/hxbuQZaqFcZho6wMpLqtyaqg3FpuZtFKO/6A4w==",
                 "CommandID": "PromotionPayment",
-                "Amount": f"{generate_random_number()}",
+                "Amount": "600",
                 "PartyA": "3039953",
-                "PartyB": get_phone(),
+                "PartyB": "254113011396",
                 "Remarks": get_reference_no(),
-                "QueueTimeOutURL": "https://webhook.site/3a6ddb34-8093-4a95-adb6-f624fce3a709",
-                "ResultURL": "https://webhook.site/3a6ddb34-8093-4a95-adb6-f624fce3a709",
+                "QueueTimeOutURL": "https://webhook.site/433a2fa4-82a9-4a18-90cf-36b7f224a611",
+                "ResultURL": "https://webhook.site/433a2fa4-82a9-4a18-90cf-36b7f224a611",
                 "Occasion": get_reference_no()
             }
 
@@ -61,3 +61,6 @@ def disburse():
             return {"status": 1, "response": response}
         except Exception as e:
             return {"status": 0, "error": e}
+        
+
+disburse()

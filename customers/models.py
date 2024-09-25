@@ -1,5 +1,7 @@
 from django.db import models
 
+from courses.models import Lesson
+
 # Create your models here.
 
 
@@ -16,6 +18,7 @@ class Customer(models.Model):
     date_updated = models.DateTimeField(null=True)
     url = models.UUIDField(null=True)
     visibility = models.BooleanField(default=True)
-
+    courses = models.ManyToManyField(Lesson, related_name="customers")
+    
     class Meta:
         ordering = ["full_name"]
