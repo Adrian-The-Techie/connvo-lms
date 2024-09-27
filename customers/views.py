@@ -108,7 +108,7 @@ def contactUs(request):
     data = request.data
     print(data)
     subject = data.get('subject')
-    message = f"Name:{data.get('name')}\nEmail:{data.get('email')}\nSubject:{data.get('subject')}\nMessage:{data.get('message')}"
+    message = f"Name:{data.get('name')}\nEmail:{data.get('email')}\nSubject:{data.get('subject')}\Request type:{data.get('requestType')}\nMessage:{data.get('message')}"
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [settings.EMAIL_HOST_USER, ]
     
