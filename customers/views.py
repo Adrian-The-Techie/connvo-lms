@@ -15,6 +15,9 @@ from shared import generateRefNo
 from .models import Customer
 from .serializers import CustomerSerializer
 
+
+from django.conf import settings
+from django.core.mail import send_mail
 # Create your views here.
 
 
@@ -97,3 +100,18 @@ class SubscriberView(APIView):
     #     res = {"status": 1, "message": "Program edited successfuly"}
 
     #     return JsonResponse(res)
+
+
+
+@api_view(['POST'])
+def contactUs(request):
+    data = request.data
+    print(data)
+    subject = data.get('subject')
+    message = f"Name:{data.get('name')}\nEmail:{data.get('email')}\nSubject:{data.get('subject')}\nMessage:{data.get('message')}"
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [settings.EMAIL_HOST_USER, ]
+    
+    send_mail( subject, message, email_from, recipient_list )
+    
+    return JsonResponse({'status':1, 'message':'Thank you for reaching out. We will reach out to you as soon as possible'})
