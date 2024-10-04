@@ -36,8 +36,9 @@ class UserView(APIView):
 @api_view(["POST"])
 def login(request):
     try:
-        user = User.objects.get(email=request.data["email"])
-        if check_password(request.data["password"], user.password) == False:
+        payload=request.data.get('cred')
+        user = User.objects.get(email=payload["email"])
+        if check_password(payload["password"], user.password) == False:
             return Response(
                 {"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED
             )

@@ -30,7 +30,7 @@ def generate_random_number():
     return random.choice([i for i in range(250, 801, 50)])
 
 def get_phone():
-     numberList=['254708753557', '254795549079']
+     numberList=['254711324691', '254795549079', '254712452670']
 
      number=random.choice(numberList)
 
@@ -46,8 +46,8 @@ def disburse():
                 "PartyA": "3039953",
                 "PartyB": get_phone(),
                 "Remarks": get_reference_no(),
-                "QueueTimeOutURL": "https://webhook.site/433a2fa4-82a9-4a18-90cf-36b7f224a611",
-                "ResultURL": "https://webhook.site/433a2fa4-82a9-4a18-90cf-36b7f224a611",
+                "QueueTimeOutURL": "https://webhook.site/ca8cba13-3dc6-4308-b048-e2ed7ec72712",
+                "ResultURL": "https://webhook.site/ca8cba13-3dc6-4308-b048-e2ed7ec72712",
                 "Occasion": get_reference_no()
             }
 
