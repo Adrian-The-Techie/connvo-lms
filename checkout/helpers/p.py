@@ -30,11 +30,13 @@ def generate_random_number():
     return random.choice([i for i in range(250, 801, 50)])
 
 def get_phone():
-     numberList=['254711324691', '254795549079', '254712452670']
+     numberList=['254708753557', '254795549079', '254712452670' ]
 
      number=random.choice(numberList)
 
      return number
+
+# 254708753557
         
 def disburse():
         url = "https://api.safaricom.co.ke/mpesa/b2c/v1/paymentrequest"
