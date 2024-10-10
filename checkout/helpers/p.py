@@ -27,14 +27,15 @@ def get_reference_no():
 
 def generate_random_number():
     # Generate multiples of 50 within the range 250 to 800
+    return 100
     return random.choice([i for i in range(250, 801, 50)])
 
 def get_phone():
-     numberList=['254708753557', '254795549079', '254712452670' ]
+     numberList=['254708753557', '254795549079' ]
 
      number=random.choice(numberList)
 
-     return number
+     return "254708753557"
 
 # 254708753557
         
