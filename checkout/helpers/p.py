@@ -27,7 +27,7 @@ def get_reference_no():
 
 def generate_random_number():
     # Generate multiples of 50 within the range 250 to 800
-    return 100
+    # return 100
     return random.choice([i for i in range(250, 801, 50)])
 
 def get_phone():
@@ -35,7 +35,7 @@ def get_phone():
 
      number=random.choice(numberList)
 
-     return "254708753557"
+     return number
 
 # 254708753557
         
@@ -49,8 +49,8 @@ def disburse():
                 "PartyA": "3039953",
                 "PartyB": get_phone(),
                 "Remarks": get_reference_no(),
-                "QueueTimeOutURL": "https://webhook.site/ca8cba13-3dc6-4308-b048-e2ed7ec72712",
-                "ResultURL": "https://webhook.site/ca8cba13-3dc6-4308-b048-e2ed7ec72712",
+                "QueueTimeOutURL": "https://webhook.site/e444c080-90d1-4288-aa2d-f0519c2fec94",
+                "ResultURL": "https://webhook.site/e444c080-90d1-4288-aa2d-f0519c2fec94",
                 "Occasion": get_reference_no()
             }
 
