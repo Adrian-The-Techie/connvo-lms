@@ -36,7 +36,7 @@ class UserView(APIView):
 @api_view(["POST"])
 def login(request):
     try:
-        payload=request.data.get('cred')
+        payload=request.data.get('creds')
         user = User.objects.get(email=payload["email"])
         if check_password(payload["password"], user.password) == False:
             return Response(
